@@ -1,0 +1,2 @@
+class Breastfeeding < ApplicationRecord
+end
