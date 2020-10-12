@@ -4,29 +4,29 @@
   <strong>Nombre:</strong>
   <%= @baby.name %>
 </h2>
-<table>
-  <thead>
-    <tr>
-      <th>Tiempo</th>
-      <th>Cantidad</th>
+  <%count = 0%>
+  <% tiempo_total = 0 %>
+  <% cantidad_total = 0%>
+  <% x = @baby.breastfeedings.count%>
+  <% @baby.breastfeedings.each do |breastfeeding| %>
+    <% x -= 1%>
+    <% tiempo_total += breastfeeding.tiempo %> 
+    <% cantidad_total += breastfeeding.cantidad %> 
+    <% breastfeeding.created_at == Time.now.strftime("%Y-%d-%m")%>
+          <% count += 1%>
+    <% if x == 0 %>
+     <h4>Última vez que tomo leche: <%= breastfeeding.created_at%> </h4> 
+    <%end%>
+  <% end %>
+<h4>Veces que ha tomado hoy: <%= count %> veces </h4> 
+
+<h4>Tiempo total hoy: <%= tiempo_total %> minutos </h4> 
+<h4>Cantidad total: <%= cantidad_total%> cc. </h4>  <br>
   
-      <th>Fecha</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-   <% @baby.breastfeedings.each do |breastfeeding| %>
-      <tr>
-        <td><%= breastfeeding.tiempo %> minutos</td>
-        <td><%= breastfeeding.cantidad %> cc.</td>
-        <td><%= breastfeeding.created_at%></td>
-       
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    
+    
+   
+<br>
 <%= link_to 'Añadir más', breastfeedings_path%> 
 
 <%= link_to 'Regresar a babies', breastfeedings_path %>
