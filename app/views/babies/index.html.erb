@@ -27,7 +27,7 @@
         </td>
         <td><%= link_to 'Show', baby %></td>
         <td><%= link_to 'Edit', edit_baby_path(baby) %></td>
-        <td><%= link_to 'Eliminar'%>
+        <td><%= link_to 'Eliminar', baby, method: :delete, data: { confirm: 'Estás seguro?' } %>
         
       </tr>
     <% end %>

@@ -1,7 +1,4 @@
 class Baby < ApplicationRecord
-    has_many :breastfeedings
+    has_many :breastfeedings, dependent: :destroy
 
-    def to_s
-        name
-    end
 end
