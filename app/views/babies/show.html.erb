@@ -1,9 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h2>
+  <strong>Nombre:</strong>
   <%= @baby.name %>
-</p>
+</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Tiempo</th>
+      <th>Cantidad</th>
+  
+      <th>Fecha</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_baby_path(@baby) %> |
-<%= link_to 'Back', babies_path %>
+  <tbody>
+   <% @baby.breastfeedings.each do |breastfeeding| %>
+      <tr>
+        <td><%= breastfeeding.tiempo %> minutos</td>
+        <td><%= breastfeeding.cantidad %> cc.</td>
+        <td><%= breastfeeding.created_at%></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Añadir más', breastfeedings_path%> 
+
+<%= link_to 'Regresar a babies', breastfeedings_path %>

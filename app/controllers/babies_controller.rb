@@ -4,7 +4,8 @@ class BabiesController < ApplicationController
   # GET /babies
   # GET /babies.json
   def index
-    @babies = Baby.all
+    @babies = Baby.all.includes(:breastfeedings)
+    #@cantidad_total = Breastfeeding.sum(:cantidad)
   end
 
   # GET /babies/1
@@ -69,6 +70,6 @@ class BabiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def baby_params
-      params.require(:baby).permit(:name)
+      params.require(:baby).permit(:name, :id)
     end
 end

@@ -20,7 +20,10 @@
     <%= form.label :tiempo %>
     <%= form.number_field :tiempo %>
   </div>
-
+  <div class="field">
+    <%= form.label :baby_id %>
+    <%= form.select :baby_id, options_for_select(@baby), prompt: 'Selecciona el nombre del bebé' %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -1,10 +1,11 @@
 class BreastfeedingsController < ApplicationController
   before_action :set_breastfeeding, only: [:show, :edit, :update, :destroy]
-
+  before_action :select_baby, only: [:new, :edit]
   # GET /breastfeedings
   # GET /breastfeedings.json
   def index
-    @breastfeedings = Breastfeeding.all
+    @breastfeedings = Breastfeeding.all.includes(:baby)
+   
   end
 
   # GET /breastfeedings/1
@@ -69,6 +70,9 @@ class BreastfeedingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def breastfeeding_params
-      params.require(:breastfeeding).permit(:cantidad, :tiempo)
+      params.require(:breastfeeding).permit(:cantidad, :tiempo, :baby_id)
+    end
+    def select_baby
+      @baby = Baby.all.pluck(:name, :id)
     end
 end
